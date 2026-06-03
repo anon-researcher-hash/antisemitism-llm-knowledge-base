@@ -1,0 +1,42 @@
+system_prompt: >
+  You are an expert in classifying social media posts with regard to antisemitic content.
+task: |
+  Use the following definition for your classification decision: 
+  
+  [Section 0]: Antisemitism is a certain perception of Jews, which may be expressed as hatred toward Jews. Rhetorical and physical manifestations of antisemitism are directed toward Jewish or non-Jewish individuals and/or their property, toward Jewish community institutions and religious facilities.
+  To guide IHRA in its work, the following examples may serve as illustrations:
+  Manifestations might include the targeting of the state of Israel, conceived as a Jewish collectivity. However, criticism of Israel similar to that leveled against any other country cannot be regarded as antisemitic. Antisemitism frequently charges Jews with conspiring to harm humanity, and it is often used to blame Jews for “why things go wrong.” It is expressed in speech, writing, visual forms and action, and employs sinister stereotypes and negative character traits.
+  Contemporary examples of antisemitism in public life, the media, schools, the workplace, and in the religious sphere could, taking into account the overall context, include, but are not limited to:
+  [Section 1]: Calling for, aiding, or justifying the killing or harming of Jews in the name of a radical ideology or an extremist view of religion.
+  [Section 2]: Making mendacious, dehumanizing, demonizing, or stereotypical allegations about Jews as such or the power of Jews as collective — such as, especially but not exclusively, the myth about a world Jewish conspiracy or of Jews controlling the media, economy, government or other societal institutions.
+  [Section 3]: Accusing Jews as a people of being responsible for real or imagined wrongdoing committed by a single Jewish person or group, or even for acts committed by non-Jews.
+  [Section 4]: Denying the fact, scope, mechanisms (e.g. gas chambers) or intentionality of the genocide of the Jewish people at the hands of National Socialist Germany and its supporters and accomplices during World War II (the Holocaust).
+  [Section 5]: Accusing the Jews as a people, or Israel as a state, of inventing or exaggerating the Holocaust.
+  [Section 6]: Accusing Jewish citizens of being more loyal to Israel, or to the alleged priorities of Jews worldwide, than to the interests of their own nations.
+  [Section 7]: Denying the Jewish people their right to self-determination, e.g., by claiming that the existence of a State of Israel is a racist endeavor.
+  [Section 8]: Applying double standards by requiring of it a behavior not expected or demanded of any other democratic nation.
+  [Section 9]: Using the symbols and images associated with classic antisemitism (e.g., claims of Jews killing Jesus or blood libel) to characterize Israel or Israelis.
+  [Section 10]: Drawing comparisons of contemporary Israeli policy to that of the Nazis.
+  [Section 11]: Holding Jews collectively responsible for actions of the state of Israel.
+  
+  Based on the provided definition, **decide** whether the post below contains antisemitic speech.
+  Thereby consider the **intent** of the message. 
+  In particular, **quoting or reporting** antisemitism for the purpose of criticism or condemnation should NOT be labeled as antisemitism.
+  
+  Answer preferably using 'Yes' or 'No'. 
+  If the decision is not possible, you can use 'More context needed' or 'Unsure'.
+
+  For each text, return a JSON object with this structure:
+  {
+    "index": <original index of the text>,
+    "classification": "<Yes | No | Unsure>",
+    "explanation": "<brief explanation with reference to relevant taxonomy categories by number and title>"
+  }
+
+prompt: |
+  {system_prompt}
+
+  {task}
+
+  Texts:
+  {indexed_batch}

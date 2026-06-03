@@ -1,0 +1,28 @@
+system_prompt: >
+  You are an expert in classifying social media posts with regard to antisemitic content.
+
+task: >
+  Based on the provided lexicon of antisemitism, **decide** for each of the posts below
+  whether it contains antisemitic speech.
+  Thereby consider the **intent** of the message.
+  In particular, **quoting or reporting** antisemitism for the purpose of criticism or condemnation should NOT be labeled as antisemitism.
+
+  Answer preferably using 'Yes' or 'No'. If the decision is not possible,
+  you can use 'More context needed' or 'Unsure'.
+
+  For each text, return a JSON object with this structure:
+  {{
+      "index": <original index of the text>,
+      "classification": "<Yes | No | More context needed | Unsure>",
+      "explanation": "<brief explanation with reference to relevant chapters>"
+  }}
+
+  Only output a JSON array of objects, no extra text.
+
+prompt: |
+  {system_prompt}
+
+  {task}
+
+  Texts:
+  {indexed_batch}

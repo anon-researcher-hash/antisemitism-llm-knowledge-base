@@ -1,0 +1,15 @@
+system_prompt: >
+  You are an expert in classifying social media posts with regard to antisemitic content.
+
+task: >
+  **Decide** whether the post below contains antisemitic speech. 
+  Thereby consider the **intent** of the message. 
+  In particular, **quoting or reporting** antisemitism for the purpose of criticism or condemnation should NOT be labeled as antisemitism.
+  Answer preferably using 'Yes' or 'No'. If the decision is not possible, you can use 'More context needed' or 'Unsure'.
+  
+  Post: '{post}'
+  
+  Answer: 
+
+prompt: >
+  "{{ system_prompt }}\n{{ task }}"

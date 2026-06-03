@@ -1,0 +1,338 @@
+system_prompt: >
+  You are an expert in classifying social media posts with regard to antisemitic content.
+
+task: |
+  Use the following taxonomy of antisemitic concepts for your classification decision.
+  In most cases, antisemitic and non-antisemitic examples are provided to guide your decision.
+
+  2. The Other / Foreign
+     Antisemitic example (explicit):
+     - "You're not French. You're Jewish and even if you converted, this wouldn't change."
+     Antisemitic example (implicit):
+     - "(((They)))"
+     Non-antisemitic example:
+     - "Contrary to Germans, Israelis prefer remaining among themselves."
+
+  3. Evil / The Devil
+     Antisemitic example (explicit):
+     - "Jews are bad guys."
+     Antisemitic example (implicit):
+     - "Emperor Palatine lived a long life I'm afraid."
+     Non-antisemitic example:
+     - "Re Soros: He literally ruined your currency and screwed your country and yet here you are defending him."
+
+  4. Blood Libel / Child Murder
+     Antisemitic example (explicit):
+     - "What you mean is, Israel bomb children. Let's not mince words here."
+     Antisemitic example (implicit):
+     - "how many rackets has fired israel at innocent children???"
+     Non-antisemitic example:
+     - "Nine children died in Gaza last month as a result of air strikes."
+
+  5. Repulsiveness and Dehumanisation
+     Antisemitic example (explicit):
+     - "Israel = the country of wild animals."
+     Antisemitic example (implicit):
+     - "Well, look at the noses first of all!"
+     Non-antisemitic example:
+     - "The IDF (Israeli Defense Forces) are responsible for many inhuman actions in occupied territories."
+
+  6. Immorality
+     Antisemitic example (explicit):
+     - "They are liars, usurers, cruel, unjust and godless of course they have neither conscience nor morality."
+     Antisemitic example (implicit):
+     - "there will never be peace because Israel values land grabs over basic human compassion."
+     Non-antisemitic example:
+     - "Netanyahu took over the repertoire of radical right! That is just immoral and dirty politics!"
+
+  7. Lie and Deceit
+     Antisemitic example (explicit):
+     - "Anything out of George Soros's mouth is garbage."
+     Antisemitic example (implicit):
+     - "Like, we can believe ANYTHING from George Soros?"
+     Non-antisemitic example:
+     - "At the time, Soros lied and the world believed him."
+
+  8. Vengefulness
+     Antisemitic example (explicit):
+     - "how about the genocide against innocent Palestinians that your government has been operating for over 70 years? Whilst killing is not going to resolve anything, as I'm sure your country will have its revenge by killing hundreds of Palestinian children within days."
+     Antisemitic example (implicit):
+     - "The question can be answered well. Ask the people in Gaza and the West Bank. Read the reports of shooting at unarmed people. In the old law it was an eye for an eye, and now it is 8 against 192."
+     Non-antisemitic example:
+     - A: "Classic Israeli response." B: "Exactly. Freak out at even the slightest hint of blame."
+
+  9. Disloyalty / Jewish Loyalty
+     Antisemitic example (explicit):
+     - "Why don't these Jewish Ukrainian citizens stay and defend their country?"
+     Antisemitic example (implicit):
+     - "That's your French side I guess. I'm waiting for the knife in the back to feel the Israeli side."
+     Non-antisemitic example:
+     - "It is obvious that Jews draw cohesion from their communities."
+
+  10. Blame for Antisemitism
+      Antisemitic example (explicit):
+      - "With their behaviour, Jews need not be surprised that they are met with hatred."
+      Antisemitic example (implicit):
+      - "I wonder why, time to look into the mirror."
+      Non-antisemitic example:
+      - "If a radical right-wing government comes to power in Israel, a new wave of antisemitism threatens — against Jews in Europe and Germany."
+
+  11. Greed, Exploitation and Identification with Capitalism
+      Antisemitic example (explicit):
+      - "It is disgusting to see how greedy these Jews are!"
+      Antisemitic example (implicit):
+      - "Business, always business !!!"
+      Non-antisemitic example:
+      - "The bridge between Judaism and banks/money changers is as old as the OT and Christianity. Jews and money are symbiotic according to popular opinion. Even still in 19th and 20th century Germany. This is simply because of the tradition imposed on them by Christian society."
+
+  12. Power
+      Antisemitic example (explicit):
+      - "it's not just Britain, it's worldwide... Jewish lobby organisations have a huge influence over the world media, politics and economy. It's neither new nor unknown fact."
+      Antisemitic example (implicit):
+      - "Yes, because [Hitler's] paternal grandmother has worked for a well-known and powerful family in Vienna."
+      Non-antisemitic example:
+      - "Who benefits from inciting hatred against Muslims? Who paid for this study?"
+
+  13. Conspiracy Theories
+      Antisemitic example (explicit):
+      - "Jews rule the WORLD!"
+      Antisemitic example (implicit):
+      - "(((The lobby that does not exist))) strikes again."
+      Non-antisemitic example:
+      - "BBC, CNN, ALJAZIRA all are controlled by US the owner of israel people, b/c israel is USA province outside US territory."
+
+  14. Disintegration
+      Antisemitic example (explicit):
+      - "Jews are troublemakers."
+      Antisemitic example (implicit):
+      - "If the body is sick, then you have to fight the disease."
+      Non-antisemitic example:
+      - "Netanyahu is a political troublemaker."
+
+  15. Self-victimisation
+      Antisemitic example (explicit):
+      - "Unless we act quickly, everyone that goes against Soros will be locked up, mark my word!"
+      Antisemitic example (implicit):
+      - "So you occupy another's homeland, oppress them, throw them out of their homes, kill them, lock up their children and then want to play the innocent victim?"
+      Non-antisemitic example:
+      - "Hamas and Israel need to come up with a durable peace plan to end the suffering of the Palestinians. These people deserve a place to feel safe from oppression and discrimination."
+
+  16. Rejection of Guilt
+      Antisemitic example (explicit):
+      - "Ordinary people didn't know anything about these things back then."
+      Antisemitic example (implicit):
+      - "What is just about being punished as a bystander for what others have done?"
+      Non-antisemitic example:
+      - "It's not true that all Germans bear guilt for the Holocaust."
+
+  17. Demands for a Clean Break with the Nazi Past
+      Antisemitic example (explicit):
+      - "And eternal remains the eternal guilt that must never go away. Honestly, as long as France, England, Holland and especially the USA don't crawl on their knees to their victims and ask for forgiveness, I'm not going to fucking feel guilty for something that happened before I was born. At some point, there will be an end to this imposed eternal guilt!"
+      Antisemitic example (implicit):
+      - "It's good that Germany has no other problems."
+      Non-antisemitic example:
+      - "Age is no protection from punishment, I know... Nevertheless. How do you want to punish her? Life imprisonment at 96??? Or community service??? Irony off.... It comes years too late."
+
+  18. Holocaust Distortion and Denial
+      Antisemitic example (explicit):
+      - "German soldiers did not participate in atrocities."
+      Antisemitic example (implicit):
+      - "Our soldiers have remained decent."
+      Non-antisemitic example:
+      - "The 'constitutional' council has shown us its submission to the injunction of the paSS and therefore to dictatorship."
+
+  19. Relativisation and Denial of Antisemitism
+      Antisemitic example (explicit):
+      - "There is no longer any serious antisemitism in Germany today."
+      Antisemitic example (implicit):
+      - "To make a thunderclap out of a fart once again."
+      Non-antisemitic example:
+      - "Where is antisemitism hidden in my post?"
+
+  20. Instrumentalisation of Antisemitism and the Holocaust
+      Antisemitic example (explicit):
+      - "The Holocaust — the best recipe for political oppression."
+      Antisemitic example (implicit):
+      - "The Jews need to stop living in the past."
+
+  21. Nazi-Jewish Collaboration
+      Antisemitic example (explicit):
+      - "Only with the help of Jewish collaborators could the killing machinery in the concentration camps be operated. Only a few rebelled as in the uprising in Auschwitz in 1944 or in Sobibor in 1943."
+      Antisemitic example (implicit):
+      - "History is repeating, you just need to learn from it, there are Jews in the AZOV regiment in Ukraine."
+      Non-antisemitic example:
+      - "What are you talking about! Do you know that those Zionists had an agreement with the Nazis! The Haavara Agreement was an agreement between Nazi Germany and Zionist German Jews signed on 25 August 1933. The agreement was finalized after three months of talks by the Zionist Federation of Germany, the Anglo-Palestine Bank and the economic authorities of Nazi Germany."
+
+  22. Admonishers
+      Antisemitic example (explicit):
+      - "I'm tired of being reminded of the Holocaust every time I express patriotism as a German."
+      Antisemitic example (implicit):
+      - "Will Jews ever stop cornering us with tales from our past?"
+      Non-antisemitic example:
+      - "Remembering history — that always comes from those who see themselves as the forever superior."
+
+  23. Taboo of Criticism
+      Antisemitic example (explicit):
+      - "When you say negative things on social media about Israel or Jews especially on FB you get blocked — that is fact. HOWEVER saying negative things about Irish, Blacks, Hispanics, and others are inappropriately ok."
+      Antisemitic example (implicit):
+      - "'I am Charlie' apparently does not apply to all, because they criticized the poor Jews...such double standards...this is appalling."
+      Non-antisemitic example:
+      - "I understand the need to fight antisemitism and I'm all for it. But seeing populists like Netanyahu act as if no one (Jewish or not) is allowed to criticise his political choices because of it... it is just wrong!"
+
+  24. Jews Have Not Learned From the Past
+      Antisemitic example (explicit):
+      - "You would think that after the Holocaust, the Jewish community would know more than anyone else what true injustice feels like, unfortunately that doesn't seem to be the case."
+      Antisemitic example (implicit):
+      - "U zionist disgust me u would think ul learn from ur past and ancestors."
+      Non-antisemitic example:
+      - "People never learn from the past."
+
+  25. Holding Jews Collectively Responsible for Israel's Actions
+      Antisemitic example (explicit):
+      - "You, as German Jews, must get used to the fact that you, too, will be held accountable for the actions of the Israelis. After all, this is your state."
+      Antisemitic example (implicit):
+      - "Dear Central Council of Jews, what are you doing in the Mideast?"
+      Non-antisemitic example:
+      - "You, as German Jews, must get used to the fact that you, too, might be held accountable for the actions of the Israelis."
+
+  26. Jewish Privilege and the "Free Pass"
+      Antisemitic example (explicit):
+      - "I sincerely find it difficult to justify why anti-Semitism is more important than the others."
+      Antisemitic example (implicit):
+      - "How about, protecting Muslims or Satanists or other religions? Why Jews?"
+      Non-antisemitic example:
+      - "Do you think they can kill innocent people with impunity?"
+
+  27. Affirmation of Nazis, Hitler and the Holocaust
+      Antisemitic example (explicit):
+      - "Hitler's Germany was based. I am sure it will be back one day."
+      Antisemitic example (implicit):
+      - "We need a new German man with a half moustache."
+      Non-antisemitic example:
+      - "Let's not forget Hitler was democratically elected."
+
+  28. Nazi Analogy / Fascism Analogies
+      Antisemitic example (explicit):
+      - "Israel is to the Middle East what Nazi Germany was to Europe."
+      Antisemitic example (implicit):
+      - "They have stolen its water, natural gas, land, resources and its future — now they blame the prisoners of their concentration camp."
+      Non-antisemitic example:
+      - "Studying the Holocaust should be a warning against all forms of oppression and injustice, whether in the Middle East or in other conflicts."
+
+  29. Apartheid Analogy / Racist State
+      Antisemitic example (explicit):
+      - "The only right this scam, welfare, fascist, terrorist, apartheid, has is to go f..... itself."
+      Antisemitic example (implicit):
+      - "I didnt need to goto south Africa and i dont need to goto Palestine to figure it out."
+      Non-antisemitic example:
+      - "Netanyahu has increasingly been introducing some apartheid-style policies in areas of the West Bank."
+
+  30. Colonialism Analogies
+      Antisemitic example (explicit):
+      - "Israel is an apartheid colony made up of people who had nationalities, citizenship and ethnicities of other countries (mostly Europe and North Africa) who used the cover of the British Empire and the Holocaust and the power of Western finance to steal Palestine."
+      Antisemitic example (implicit):
+      - "The oppressed Palestinians are detained in Gaza like the Boers in the old times. After the wars the Brits controlled all of South Africa — for decades.... you see, violence always pays off!"
+      Non-antisemitic example:
+      - "The Israeli government has announced several times that it plans to continue the annexation of the West Bank."
+
+  31. Terrorist State
+      Antisemitic example (explicit):
+      - "Israel is a terrorist state."
+      Antisemitic example (implicit):
+      - "Why should there be a need for suicide bombs to come to state terror inflicting state Israel when the whole state is a bomb making and bomb using factory?"
+      Non-antisemitic example:
+      - "I am referring to when Israel was established in 1948....through war, through terroristic acts against the British...they were TERRORISTS."
+
+  32. Genocide
+      Antisemitic example (explicit):
+      - "Opposing genocide is NOT ANTI Semitic. OTHERWISE YOU ARE supporting Adolf in WWII. Can't have it both ways."
+      Antisemitic example (implicit):
+      - "So if some one come and take ur home and ask u to leave. will u. Just leave? Or fight back?"
+      Non-antisemitic example:
+      - "There are some far-right parties in Israel right now who do want to destroy the Palestinians."
+
+  33. Double Standards
+
+  34. Denial of Israel's Right to Exist
+      Antisemitic example (explicit):
+      - "There is no Israel, just illegally occupied Palestine."
+      Antisemitic example (implicit):
+      - "thats not even a flag SMH."
+      Non-antisemitic example:
+      - "The West Bank is not Israel. Israel's borders are defined by the 1948 UN resolution!"
+
+  35. Calls for Boycott of Israel and Support for BDS
+      Antisemitic example (explicit):
+      - "Anyone who cares about human rights should be pro BDS."
+      Antisemitic example (implicit):
+      - "Supporting BDS, the non-violent protest group, is anti-Semitic now?"
+      Non-antisemitic example:
+      - "The decision to stop selling in the occupied territories signals that there are other ways than BDS to show solidarity with the Palestinians. This is not about boycotting Israel, but only the settlements, which are illegal under international law."
+
+  36. Israel's Sole Guilt in the Conflict
+      Antisemitic example (explicit):
+      - "For well-educated people Israel has been the villain of the piece since its establishment."
+      Antisemitic example (implicit):
+      - "why dont you start your research from 1948, start from the root of the problem."
+      Non-antisemitic example:
+      - "It wasn't a 1 sided war in 1948, 1967, or 1973."
+
+  37. Introduction to Aggressive Speech Acts
+
+  38. Insults
+      Antisemitic example (explicit):
+      - "F***ing Jewish liar."
+      Antisemitic example (implicit):
+      - "Evil Sore-Ass."
+      Non-antisemitic example:
+      - "Fuck Israel!!! Long live Jews!!!"
+
+  39. Threats
+      Antisemitic example (explicit):
+      - "Israel is like a lamb among a wolf pack. When they stop fighting among themselves and bring the attention on the food, it will hurt.... Israel, keep enjoying the neighbours' nap. When they wake up, they will hurt you."
+      Antisemitic example (implicit):
+      - "If Israel keeps making so many enemies around the world, there will soon be a need for a new final solution."
+      Non-antisemitic example:
+      - "Israel and its citizens will never live in peace and prosperity unless they try to understand and address the root cause of the conflict."
+
+  40. Curses
+      Antisemitic example (explicit):
+      - "May God punish Israel hard for their crime!"
+      Antisemitic example (implicit):
+      - "The Lord knows how to deliver the pious from temptation, but to keep the unrighteous for the day of judgment to punish them."
+      Non-antisemitic example:
+      - "The man who broke the bank of England...may this man's financial projects fail."
+
+  41. Death Wishes
+      Antisemitic example (explicit):
+      - "We will stop at nothing to kill the Zionists."
+      Antisemitic example (implicit):
+      - "I'm a bit sleepy tonight but when I wake up I'm going death con 3 On JEWISH PEOPLE."
+      Non-antisemitic example:
+      - "you would doubtless still be celebrating the death of thousands of Jews."
+
+  42. Affirming, Desiring, Calling for Violence
+      Antisemitic example (explicit):
+      - "Totally deserved and appropriate!!! Israel deserves MUCH more than this. Fascist, Genocidal state!!!!"
+      Antisemitic example (implicit):
+      - "When the people will rise up at last, I won't feel sorry for Soros and the likes of him."
+      Non-antisemitic example:
+      - "don't agree with the violence at all, but this kind of thing was always going to happen."
+
+  Thereby consider the **intent** of the message.
+  In particular, **quoting or reporting** antisemitism for the purpose of criticism or condemnation should NOT be labeled as antisemitism.
+  Answer preferably using 'Yes' or 'No'. If the decision is not possible, you can use 'Unsure'.
+  For each text, return a JSON object with this structure:
+  {
+    "index": <original index of the text>,
+    "classification": "<Yes | No | Unsure>",
+    "explanation": "<brief explanation with reference to relevant taxonomy categories by number and title>"
+  }
+
+prompt: |
+  {system_prompt}
+
+  {task}
+
+  Texts:
+  {indexed_batch}

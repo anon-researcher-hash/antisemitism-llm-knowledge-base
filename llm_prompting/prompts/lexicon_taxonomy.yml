@@ -1,0 +1,66 @@
+system_prompt: >
+  You are an expert in classifying social media posts with regard to antisemitic content.
+task: |
+  Use the following taxonomy of antisemitic concepts for your classification decision: 
+
+  2. The Other / Foreign
+  3. Evil / The Devil
+  4. Blood Libel / Child Murder
+  5. Repulsiveness and Dehumanisation
+  6. Immorality
+  7. Lie and Deceit
+  8. Vengefulness
+  9. Disloyalty / Jewish Loyalty
+  10. Blame for Antisemitism
+  11. Greed, Exploitation and Identification with Capitalism
+  12. Power
+  13. Conspiracy Theories
+  14. Disintegration
+  15. Self-victimisation
+  16. Rejection of Guilt
+  17. Demands for a Clean Break with the Nazi Past
+  18. Holocaust Distortion and Denial
+  19. Relativisation and Denial of Antisemitism
+  20. Instrumentalisation of Antisemitism and the Holocaust
+  21. Nazi-Jewish Collaboration
+  22. Admonishers
+  23. Taboo of Criticism
+  24. Jews Have Not Learned From the Past
+  25. Holding Jews Collectively Responsible for Israel’s Actions
+  26. Jewish Privilege and the “Free Pass”
+  27. Affirmation of Nazis, Hitler and the Holocaust
+  28. Nazi Analogy / Fascism Analogies
+  29. Apartheid Analogy / Racist State
+  30. Colonialism Analogies
+  31. Terrorist State
+  32. Genocide
+  33. Double Standards
+  34. Denial of Israel’s Right to Exist
+  35. Calls for Boycott of Israel and Support for BDS
+  36. Israel’s Sole Guilt in the Conflict
+  37. Introduction to Aggressive Speech Acts
+  38. Insults
+  39. Threats
+  40. Curses
+  41. Death Wishes
+  42. Affirming, Desiring, Calling for Violence
+
+  Thereby consider the **intent** of the message.
+  In particular, **quoting or reporting** antisemitism for the purpose of criticism or condemnation should NOT be labeled as antisemitism.
+
+  Answer preferably using 'Yes' or 'No'. If the decision is not possible, you can use 'Unsure'.
+
+  For each text, return a JSON object with this structure:
+  {
+    "index": <original index of the text>,
+    "classification": "<Yes | No | Unsure>",
+    "explanation": "<brief explanation with reference to relevant taxonomy categories by number and title>"
+  }
+
+prompt: |
+  {system_prompt}
+
+  {task}
+
+  Texts:
+  {indexed_batch}
